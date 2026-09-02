@@ -13,4 +13,4 @@ and:
 
 node server.js
 
-It works on every platform! (Linux,MacOS,Windows)
+It works on every platform! (Linux, MacOS, Windows)
