@@ -4,12 +4,12 @@ RetroUI for WhatsApp
 
 Prima di iniziare assicurati di avere installato:
 
-    Node.js
-    versione 18 o superiore
     
-    npm
+Node.js versione 18 o superiore
     
-    Git
+npm
+
+Git
     
 Installa le dipendenze:
 
