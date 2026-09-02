@@ -11,15 +11,14 @@ Prima di iniziare assicurati di avere installato:
     
     Git
     
-
-    Installa le dipendenze:
+Installa le dipendenze:
 
     npm install baileys
     
     npm install express
 
 
-    E infine:
+E infine:
 
     node server.js 
 
