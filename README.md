@@ -1,21 +1,26 @@
-RetroUI Whatsapp
+RetroUI for WhatsApp 
+
+📋 Requisiti
+
+Prima di iniziare assicurati di avere installato:
+
+    Node.js
+    versione 18 o superiore
+    
+    npm
+    
+    Git
+    
+
+    Installa le dipendenze:
+
+    npm install baileys
+    
+    npm install express
 
 
-A new CRT-style UI for Whatsapp Web
+    E infine:
 
-How to install?
+    node server.js 
 
-
-Inside the directory:
-
-
-npm install express
-
-npm install baileys
-
-and:
-
-node server.js
-
-
-It works on every platform! (Linux, MacOS, Windows)
+    
