@@ -1,6 +1,9 @@
-##RetroUI Whatsapp
+RetroUI Whatsapp
+
 A new CRT-style UI for Whatsapp Web
-##How to install?
+
+How to install?
+
 Inside the directory:
 
 npm install express
