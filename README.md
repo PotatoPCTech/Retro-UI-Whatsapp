@@ -12,3 +12,5 @@ npm install baileys
 and:
 
 node server.js
+
+It works on every platform! (Linux,MacOS,Windows)
