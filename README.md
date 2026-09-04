@@ -13,10 +13,7 @@ Prima di iniziare assicurati di avere installato:
     
 Installa le dipendenze:
 
-    npm install baileys
-    
-    npm install express
-
+   npm install @whiskeysockets/baileys@7.0.0-rc14 express@5.2.1 jsqr@1.4.0 pino@10.3.1 pngjs@7.0.0 qrcode-terminal@0.12.0 qrcode@1.5.4 socket.io-client@4.8.3 socket.io@4.8.3
 
 E infine:
 
