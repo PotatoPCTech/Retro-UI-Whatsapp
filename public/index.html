@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="it" data-phosphor="green">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CRT-WA :: terminale WhatsApp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/crt.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23000'/><text x='8' y='12' font-size='11' text-anchor='middle' fill='%2333ff66'>W</text></svg>">
+</head>
+<body>
+
+<div class="monitor">
+  <div class="bezel">
+    <div class="brand-strip">
+      <span class="brand">SANYODYNE<b>&nbsp;DM-1400</b></span>
+      <span class="brand-dots"></span>
+      <span class="led" id="led"></span>
+    </div>
+
+    <div class="screen" id="screen">
+      <div class="screen-inner">
+
+        <!-- ============================ BOOT ============================ -->
+        <section class="boot" id="boot">
+          <pre id="bootLog"></pre>
+        </section>
+
+        <!-- ============================ APP ============================= -->
+        <section class="app hidden" id="app">
+
+          <header class="titlebar">
+            <span class="titlebar-name">CRT-WA</span>
+            <span class="titlebar-sep">|</span>
+            <span class="titlebar-sub">terminale di messaggistica</span>
+            <span class="spacer"></span>
+            <span class="titlebar-user" id="meName">--</span>
+            <span class="titlebar-clock" id="clock">--:--:--</span>
+            <button class="tb-btn" id="btnPhosphor" title="cambia fosforo">[F]</button>
+            <button class="tb-btn" id="btnRefresh" title="ricarica elenco">[R]</button>
+            <button class="tb-btn danger" id="btnLogout" title="disconnetti account">[X]</button>
+          </header>
+
+          <div class="workspace">
+
+            <!-- ---------------------- elenco chat ---------------------- -->
+            <aside class="panel sidebar">
+              <div class="panel-head">
+                <span class="panel-title">DIRECTORY</span>
+                <span class="panel-count" id="chatCount">0</span>
+              </div>
+
+              <div class="search-row">
+                <span class="prompt">&gt;</span>
+                <input id="search" type="text" autocomplete="off" spellcheck="false" placeholder="cerca_">
+              </div>
+
+              <nav class="tabs" id="tabs">
+                <button class="tab active" data-filter="all">TUTTE</button>
+                <button class="tab" data-filter="contact">CONTATTI</button>
+                <button class="tab" data-filter="group">GRUPPI</button>
+                <button class="tab" data-filter="unread">NUOVE</button>
+              </nav>
+
+              <ul class="chat-list" id="chatList"></ul>
+
+              <div class="panel-foot" id="sideFoot">nessun dato</div>
+            </aside>
+
+            <!-- ---------------------- conversazione -------------------- -->
+            <main class="panel conversation">
+              <div class="conv-head">
+                <div class="conv-id">
+                  <span class="avatar" id="convAvatar">??</span>
+                  <div class="conv-meta">
+                    <div class="conv-name" id="convName">NESSUN CANALE SELEZIONATO</div>
+                    <div class="conv-sub" id="convSub">seleziona una voce dalla directory</div>
+                  </div>
+                </div>
+                <div class="conv-kind" id="convKind"></div>
+              </div>
+
+              <div class="messages" id="messages">
+                <div class="placeholder" id="placeholder">
+<pre>
+   .----------------------------------------.
+   |                                        |
+   |     N E S S U N   C A N A L E          |
+   |                                        |
+   |   usa la directory a sinistra per      |
+   |   aprire una conversazione attiva      |
+   |                                        |
+   '----------------------------------------'
+</pre>
+                </div>
+              </div>
+
+              <div class="typing" id="typing"></div>
+
+              <form class="composer" id="composer">
+                <span class="prompt">TX&gt;</span>
+                <textarea id="input" rows="1" autocomplete="off" spellcheck="false"
+                          placeholder="digita il messaggio e premi INVIO..." disabled></textarea>
+                <button type="submit" id="sendBtn" disabled>INVIA</button>
+              </form>
+            </main>
+          </div>
+
+          <footer class="statusbar">
+            <span class="st-block" id="stState">STATO: OFFLINE</span>
+            <span class="st-block" id="stChats">CHAT: 0</span>
+            <span class="st-block" id="stGroups">GRUPPI: 0</span>
+            <span class="st-block" id="stContacts">RUBRICA: 0</span>
+            <span class="spacer"></span>
+            <span class="st-block ticker" id="stMsg">in avvio</span>
+          </footer>
+        </section>
+
+        <!-- ============================ QR ============================== -->
+        <section class="overlay hidden" id="qrOverlay">
+          <div class="qr-window">
+            <div class="qr-title">== AUTENTICAZIONE RICHIESTA ==</div>
+            <div class="qr-body">
+              <div class="qr-frame">
+                <img id="qrImg" alt="codice QR">
+                <div class="qr-scan"></div>
+              </div>
+              <ol class="qr-steps">
+                <li>apri <b>WhatsApp</b> sul telefono</li>
+                <li>menu <b>&gt; Dispositivi collegati</b></li>
+                <li>tocca <b>Collega un dispositivo</b></li>
+                <li>inquadra questo codice</li>
+              </ol>
+            </div>
+            <div class="qr-foot" id="qrFoot">in attesa di scansione<span class="blink">_</span></div>
+          </div>
+        </section>
+
+        <!-- ========================= CONNESSIONE ======================== -->
+        <section class="overlay hidden" id="waitOverlay">
+          <div class="wait-window">
+            <div class="wait-title" id="waitTitle">CONNESSIONE IN CORSO</div>
+            <div class="bar"><div class="bar-fill" id="waitBar"></div></div>
+            <div class="wait-msg" id="waitMsg">handshake<span class="blink">_</span></div>
+          </div>
+        </section>
+
+        <div class="scanlines"></div>
+        <div class="glare"></div>
+        <div class="flicker"></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <span class="knob"></span><span class="knob"></span>
+      <span class="ctrl-label">POWER</span>
+      <span class="ctrl-label">V-HOLD</span>
+      <span class="ctrl-label">BRIGHT</span>
+    </div>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>
