@@ -1,4 +1,4 @@
-RetroUI for WhatsApp 
+RetroUI per WhatsApp 
 
 📋 Requisiti
 
