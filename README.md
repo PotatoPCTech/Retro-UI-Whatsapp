@@ -1,6 +1,7 @@
 **RetroUI per WhatsApp**
 
-*📋 Requisiti*
+
+📋 *Requisiti*
 
 Prima di iniziare assicurati di avere installato:
 
